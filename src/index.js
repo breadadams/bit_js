@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import fetch from 'node-fetch';
 
 // Fetch 
-const bitFetch = (url) => fetch('//rest.bandsintown.com/artists/'+url)
+const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 .then( (response) => {
   if ( response.status === 200 && response.statusText === 'OK') {
     return response.json()
