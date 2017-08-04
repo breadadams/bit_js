@@ -1,1 +1,1 @@
-# bit-js
+# bit_js
