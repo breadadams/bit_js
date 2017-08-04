@@ -10,7 +10,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Fetch 
 var bitFetch = function bitFetch(url) {
-  return (0, _nodeFetch2.default)('//rest.bandsintown.com/artists/' + url).then(function (response) {
+  return (0, _nodeFetch2.default)('http://rest.bandsintown.com/artists/' + url).then(function (response) {
     if (response.status === 200 && response.statusText === 'OK') {
       return response.json();
     } else {
@@ -61,6 +61,7 @@ var bitGetArtistEvents = function bitGetArtistEvents() {
   });
 };
 
+// Export bitGetArtist & bitGetArtistEvents
 module.exports = {
   bitGetArtist: bitGetArtist,
   bitGetArtistEvents: bitGetArtistEvents
