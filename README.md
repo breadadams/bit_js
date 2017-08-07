@@ -57,3 +57,11 @@ For example `Britney%20Spears`.
 `app_id`: ID of the app using the API. This can be anything.
 
 `callback(data)`: Callback function that returns data if call is successful.
+
+
+
+## T&C
+
+For usage terms & conditions see the [BiT API Terms](http://corp.bandsintown.com/api-terms/).
+
+Note: This project is **not** _affiliated with_ or _maintained by_ [Bands in Town](https://bandsintown.com/).
