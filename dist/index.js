@@ -1,23 +1,16 @@
 'use strict';
 
-require('whatwg-fetch');
-
-var _nodeFetch = require('node-fetch');
-
-var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 // Fetch 
 var bitFetch = function bitFetch(url) {
-  return (0, _nodeFetch2.default)('http://rest.bandsintown.com/artists/' + url).then(function (response) {
+  return fetch('http://rest.bandsintown.com/artists/' + url).then(function (response) {
     if (response.status === 200 && response.statusText === 'OK') {
       return response.json();
     } else {
       throw new Error('Problem with server response. Status: ' + response.status);
     }
-  }).then(function (data) {
-    return data;
   });
 };
 

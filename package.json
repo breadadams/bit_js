@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuild": "rimraf dist",
-    "build": "babel --copy-files --out-dir dist --ignore *.text.js src"
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://breadadams@github.com/breadadams/bit-js.git"
+    "url": "git+https://breadadams@github.com/breadadams/bit_js.git"
   },
   "keywords": [
     "bands-in-town",
@@ -19,22 +19,23 @@
   "author": "Brad Adams <hi@breadadams.com> (https://breadadams.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/breadadams/bit-js/issues"
+    "url": "https://github.com/breadadams/bit_js/issues"
   },
-  "homepage": "https://github.com/breadadams/bit-js#readme",
+  "homepage": "https://github.com/breadadams/bit_js#readme",
   "devDependencies": {
     "babel-cli": "6.24.1",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
-    "node-fetch": "1.7.1",
-    "requirejs": "2.3.4",
-    "rimraf": "2.6.1",
-    "whatwg-fetch": "2.0.3"
+    "rimraf": "2.6.1"
   },
   "babel": {
     "presets": [
       "es2015",
       "stage-2"
     ]
+  },
+  "dependencies": {
+    "es6-promise": "4.1.1",
+    "isomorphic-fetch": "2.2.1"
   }
 }

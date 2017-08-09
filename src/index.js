@@ -1,5 +1,5 @@
-import 'whatwg-fetch';
-import fetch from 'node-fetch';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 // Fetch 
 const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
@@ -9,9 +9,6 @@ const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
   } else {
     throw new Error('Problem with server response. Status: ' + response.status)
   }
-} )
-.then( data => {
-  return data
 })
 
 
