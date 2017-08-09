@@ -18,13 +18,12 @@ const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 // @app_id: string
 // @callback: function 
 const bitGetArtist = (artist='', app_id='', callback) => {
-  if ( !artist && !app_id ) { return false }
-  const url = artist + '?app_id='+ app_id;
-  bitFetch(url).then(data => {
-    if ( data && callback && typeof callback === 'function' ) {
+  if ( artist && app_id ) {
+    const url = artist + '?app_id='+ app_id;
+    bitFetch(url).then(data => {
       callback(data)
-    }
-  })
+    })
+  }
 }
 
 
@@ -34,13 +33,12 @@ const bitGetArtist = (artist='', app_id='', callback) => {
 // @app_id: string
 // @callback: function 
 const bitGetArtistEvents = (artist='', app_id='', callback) => {
-  if ( !artist && !app_id ) { return false }
-  const url = artist + '/events?app_id='+ app_id;
-  bitFetch(url).then(data => {
-    if ( data && callback && typeof callback === 'function' ) {
+  if ( artist && app_id ) {
+    const url = artist + '/events?app_id='+ app_id;
+    bitFetch(url).then(data => {
       callback(data)
-    }
-  })
+    })
+  }
 }
 
 // Export bitGetArtist & bitGetArtistEvents
