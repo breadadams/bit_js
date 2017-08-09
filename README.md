@@ -5,7 +5,7 @@ A small javascript library to retrieve data from the [Bands in Town API](http://
 ## Installation
 
 #### NPM
-`npm i bit_js -D` (Install and save to devDependencies)
+`npm i bit_js --save` (Install and save to dependencies)
 
 
 
