@@ -1,6 +1,6 @@
 {
   "name": "bit_js",
-  "version": "1.0.1-rc.1",
+  "version": "1.0.1-rc.2",
   "description": "Javascript library for the Bands in Town API",
   "main": "./dist/index.js",
   "scripts": {
