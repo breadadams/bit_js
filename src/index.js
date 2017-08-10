@@ -19,8 +19,7 @@ const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 // @callback: function 
 const bitGetArtist = (artist='', app_id='', callback) => {
   if ( artist && app_id ) {
-    const url = artist + '?app_id='+ app_id;
-    bitFetch(url).then(data => {
+    bitFetch(`${artist}?app_id=${app_id}`).then(data => {
       callback(data)
     })
   }
@@ -34,8 +33,7 @@ const bitGetArtist = (artist='', app_id='', callback) => {
 // @callback: function 
 const bitGetArtistEvents = (artist='', app_id='', callback) => {
   if ( artist && app_id ) {
-    const url = artist + '/events?app_id='+ app_id;
-    bitFetch(url).then(data => {
+    bitFetch(`${artist}/events?app_id=${app_id}`).then(data => {
       callback(data)
     })
   }

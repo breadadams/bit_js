@@ -24,8 +24,7 @@ var bitGetArtist = function bitGetArtist() {
   var callback = arguments[2];
 
   if (artist && app_id) {
-    var url = artist + '?app_id=' + app_id;
-    bitFetch(url).then(function (data) {
+    bitFetch(artist + '?app_id=' + app_id).then(function (data) {
       callback(data);
     });
   }
@@ -41,8 +40,7 @@ var bitGetArtistEvents = function bitGetArtistEvents() {
   var callback = arguments[2];
 
   if (artist && app_id) {
-    var url = artist + '/events?app_id=' + app_id;
-    bitFetch(url).then(function (data) {
+    bitFetch(artist + '/events?app_id=' + app_id).then(function (data) {
       callback(data);
     });
   }
