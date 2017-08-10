@@ -6,6 +6,15 @@
 
 A small javascript library to retrieve data from the [Bands in Town API](http://www.bandsintown.com/api/overview).
 
+###### Table of contents
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+    1. [ES5](#es5)
+    2. [ES6](#es6)
+    3. [Parameters](#parameters)
+3. [Terms & Conditions](#tc)
+
 ## Installation
 
 _(Install and save to dependencies)_
