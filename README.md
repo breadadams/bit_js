@@ -1,4 +1,6 @@
 # bit_js
+
+[![npm version](https://badge.fury.io/js/bit_js.svg)](https://badge.fury.io/js/bit_js)
 [![Build Status](https://travis-ci.org/breadadams/bit_js.svg?branch=master)](https://travis-ci.org/breadadams/bit_js)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
