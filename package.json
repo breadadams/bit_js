@@ -1,16 +1,17 @@
 {
   "name": "bit_js",
-  "version": "1.0.2",
+  "version": "0.0.0-development",
   "description": "Javascript library for the Bands in Town API",
   "main": "./dist/index.js",
   "scripts": {
     "test": "mocha ./src/index.test.js -w",
     "prebuild": "rimraf dist",
-    "build": "babel --copy-files --out-dir dist --ignore *.test.js src"
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://breadadams@github.com/breadadams/bit_js.git"
+    "url": "https://github.com/breadadams/bit_js.git"
   },
   "keywords": [
     "bands-in-town",
@@ -28,7 +29,8 @@
     "babel-preset-stage-2": "6.24.1",
     "chai": "4.1.1",
     "mocha": "3.5.0",
-    "rimraf": "2.6.1"
+    "rimraf": "2.6.1",
+    "semantic-release": "^6.3.6"
   },
   "babel": {
     "presets": [
