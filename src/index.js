@@ -4,10 +4,8 @@ require('isomorphic-fetch');
 // Fetch 
 const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 .then( (response) => {
-  if ( response.status === 200 && response.statusText === 'OK') {
+  if ( response ) {
     return response.json()
-  } else {
-    throw new Error('Problem with server response. Status: ' + response.status)
   }
 })
 
