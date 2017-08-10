@@ -8,16 +8,40 @@ A small javascript library to retrieve data from the [Bands in Town API](http://
 
 ## Installation
 
+_(Install and save to dependencies)_
+
 #### NPM
-`npm i bit_js --save` (Install and save to dependencies)
+`npm i bit_js --save`
+
+#### Yarn
+`yarn add bit_js`
 
 
-
-## Importing
+## Usage
 
 ##### _ES5_
 ```
 var bit_js = require('bit_js');
+
+
+var options = {
+  'artist': 'skrillex',
+  'app_id': 'my_app_id',
+};
+
+var optionsEvents = {
+  'artist': 'skrillex',
+  'app_id': 'my_app_id',
+  'daterange': '2017-09-20',
+}
+
+var callback = function(data) {
+  console.log(data)
+}
+
+
+bit_js.bitGetArtist(options, callback);
+bit_js.bitGetArtistEvents(optionsEvents, callback);
 ```
 
 ##### _ES6_
@@ -26,41 +50,39 @@ import {
   bitGetArtist,
   bitGetArtistEvents
 } from 'bit_js'
-```
 
 
-
-## Usage
-
-##### _ES5_
-```
-var artist = 'skrillex';
-var app_id = 'my_app_id';
-var callback = function(data) {
-  console.log(data)
+let options = {
+  'artist': 'skrillex',
+  'app_id': 'my_app_id',
 }
 
-bit_js.bitGetArtist(artist, app_id, callback);
-bit_js.bitGetArtistEvents(artist, app_id, callback);
-```
+let optionsEvents = {
+  ...options,
+  'daterange': {
+    'from': '2017-08-31',
+    'to': '2017-10-05',
+  }
+}
 
-##### _ES6_
-```
-const artist = 'skrillex';
-const app_id = 'my_app_id';
 
-bitGetArtist(artist, app_id, data => console.log(data))
-bitGetArtistEvents(artist, app_id, data => console.log(data))
+bitGetArtist(options, data => console.log(data))
+bitGetArtistEvents(optionsEvents, data => console.log(data))
 ```
 
 ### Parameters
 
-`artist`: Name of the artist, the formatting can be strange here sometimes.
-For example `Britney%20Spears`.
+* **options** `object`:
 
-`app_id`: ID of the app using the API. This can be anything.
+  - **artist** `string`: Name of the artist. For example `Britney%20Spears`.
+  
+  - **app_id** `string`:
+    ID of the app using the API. This can be anything.
 
-`callback(data)`: Callback function that returns data if call is successful.
+  - **daterange** `string|object`:
+      Can be a single date, or an object (`{'from':'','to':''}`). Date should be in _"BiT format"_, `YYYY-MM-DD`.
+
+* **callback(data)** `function`: Callback function that returns data if call is successful.
 
 
 

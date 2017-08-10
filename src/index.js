@@ -12,14 +12,26 @@ const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 })
 
 
+// Options defaults
+const defaultOptions = {
+  artist: '',
+  app_id: '',
+}
+
+
 
 // GET ARTIST DETAILS
-// @artist: string
-// @app_id: string
+// @options: object
+//    @artist: string
+//    @app_id: string
 // @callback: function 
-const bitGetArtist = (artist='', app_id='', callback) => {
-  if ( artist && app_id ) {
-    bitFetch(`${artist}?app_id=${app_id}`).then(data => {
+const bitGetArtist = (options={}, callback) => {
+  const opt = { ...defaultOptions };
+
+  Object.assign(opt, options);
+
+  if ( opt.artist && opt.app_id ) {
+    bitFetch(`${opt.artist}?app_id=${opt.app_id}`).then(data => {
       callback(data)
     })
   }
@@ -28,12 +40,32 @@ const bitGetArtist = (artist='', app_id='', callback) => {
 
 
 // GET ARTIST EVENTS
-// @artist: string
-// @app_id: string
-// @callback: function 
-const bitGetArtistEvents = (artist='', app_id='', callback) => {
-  if ( artist && app_id ) {
-    bitFetch(`${artist}/events?app_id=${app_id}`).then(data => {
+// @options: object
+//    @artist: string
+//    @app_id: string
+//    @daterange: string|object
+// @callback: function
+const bitGetArtistEvents = (options={}, callback) => {
+  const opt = { ...defaultOptions, 'daterange': '' }
+
+  Object.assign(opt, options);
+
+  if ( opt.artist && opt.app_id ) {
+    let dateQuery = '';
+
+    if ( opt.daterange ) {
+      dateQuery += '&date='
+
+      if ( typeof opt.daterange === 'string' ) {
+        dateQuery += opt.daterange;
+      } else if ( typeof opt.daterange === 'object' ) {
+        dateQuery += `${opt.daterange.from},${opt.daterange.to}`
+      } else {
+        dateQuery = '';
+      }
+    }
+
+    bitFetch(`${opt.artist}/events?app_id=${opt.app_id}${dateQuery}`).then(data => {
       callback(data)
     })
   }

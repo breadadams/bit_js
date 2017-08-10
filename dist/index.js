@@ -1,5 +1,9 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -14,33 +18,61 @@ var bitFetch = function bitFetch(url) {
   });
 };
 
-// GET ARTIST DETAILS
-// @artist: string
-// @app_id: string
-// @callback: function 
-var bitGetArtist = function bitGetArtist() {
-  var artist = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var app_id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var callback = arguments[2];
+// Options defaults
+var defaultOptions = {
+  artist: '',
+  app_id: ''
 
-  if (artist && app_id) {
-    bitFetch(artist + '?app_id=' + app_id).then(function (data) {
+  // GET ARTIST DETAILS
+  // @options: object
+  //    @artist: string
+  //    @app_id: string
+  // @callback: function 
+};var bitGetArtist = function bitGetArtist() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var callback = arguments[1];
+
+  var opt = _extends({}, defaultOptions);
+
+  Object.assign(opt, options);
+
+  if (opt.artist && opt.app_id) {
+    bitFetch(opt.artist + '?app_id=' + opt.app_id).then(function (data) {
       callback(data);
     });
   }
 };
 
 // GET ARTIST EVENTS
-// @artist: string
-// @app_id: string
-// @callback: function 
+// @options: object
+//    @artist: string
+//    @app_id: string
+//    @daterange: string|object
+// @callback: function
 var bitGetArtistEvents = function bitGetArtistEvents() {
-  var artist = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var app_id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var callback = arguments[2];
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var callback = arguments[1];
 
-  if (artist && app_id) {
-    bitFetch(artist + '/events?app_id=' + app_id).then(function (data) {
+  var opt = _extends({}, defaultOptions, { 'daterange': '' });
+
+  Object.assign(opt, options);
+
+  if (opt.artist && opt.app_id) {
+    var dateQuery = '';
+
+    if (opt.daterange) {
+      dateQuery += '&date=';
+
+      if (typeof opt.daterange === 'string') {
+        dateQuery += opt.daterange;
+      } else if (_typeof(opt.daterange) === 'object') {
+        dateQuery += opt.daterange.from + ',' + opt.daterange.to;
+      } else {
+        dateQuery = '';
+      }
+    }
+
+    bitFetch(opt.artist + '/events?app_id=' + opt.app_id + dateQuery).then(function (data) {
       callback(data);
     });
   }
