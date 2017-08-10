@@ -23,15 +23,12 @@ var bitGetArtist = function bitGetArtist() {
   var app_id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   var callback = arguments[2];
 
-  if (!artist && !app_id) {
-    return false;
-  }
-  var url = artist + '?app_id=' + app_id;
-  bitFetch(url).then(function (data) {
-    if (data && callback && typeof callback === 'function') {
+  if (artist && app_id) {
+    var url = artist + '?app_id=' + app_id;
+    bitFetch(url).then(function (data) {
       callback(data);
-    }
-  });
+    });
+  }
 };
 
 // GET ARTIST EVENTS
@@ -43,15 +40,12 @@ var bitGetArtistEvents = function bitGetArtistEvents() {
   var app_id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
   var callback = arguments[2];
 
-  if (!artist && !app_id) {
-    return false;
-  }
-  var url = artist + '/events?app_id=' + app_id;
-  bitFetch(url).then(function (data) {
-    if (data && callback && typeof callback === 'function') {
+  if (artist && app_id) {
+    var url = artist + '/events?app_id=' + app_id;
+    bitFetch(url).then(function (data) {
       callback(data);
-    }
-  });
+    });
+  }
 };
 
 // Export bitGetArtist & bitGetArtistEvents
