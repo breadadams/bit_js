@@ -1,4 +1,6 @@
 # bit_js
+[![Build Status](https://travis-ci.org/breadadams/bit_js.svg?branch=master)](https://travis-ci.org/breadadams/bit_js)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 A small javascript library to retrieve data from the [Bands in Town API](http://www.bandsintown.com/api/overview).
 
