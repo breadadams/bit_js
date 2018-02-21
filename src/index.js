@@ -1,7 +1,7 @@
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
-// Fetch 
+// BiT fetch utility
 const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 .then( (response) => {
   if ( response ) {
@@ -12,8 +12,9 @@ const bitFetch = (url) => fetch('http://rest.bandsintown.com/artists/'+url)
 
 // Options defaults
 const defaultOptions = {
-  artist: '',
   app_id: '',
+  artist: '',
+  'daterange': ''
 }
 
 
@@ -22,16 +23,14 @@ const defaultOptions = {
 // @options: object
 //    @artist: string
 //    @app_id: string
-// @callback: function 
+// @callback: function
 const bitGetArtist = (options={}, callback) => {
-  const opt = { ...defaultOptions };
+  const opt = { ...defaultOptions, options };
+  const {app_id, artist} = opt;
+  const fetchPath = `${artist}?app_id=${app_id}`
 
-  Object.assign(opt, options);
-
-  if ( opt.artist && opt.app_id ) {
-    bitFetch(`${opt.artist}?app_id=${opt.app_id}`).then(data => {
-      callback(data)
-    })
+  if ( artist && app_id ) {
+    bitFetch(fetchPath).then(callback(data))
   }
 }
 
@@ -44,26 +43,25 @@ const bitGetArtist = (options={}, callback) => {
 //    @daterange: string|object
 // @callback: function
 const bitGetArtistEvents = (options={}, callback) => {
-  const opt = { ...defaultOptions, 'daterange': '' }
+  const opt = { ...defaultOptions, options }
+  const {app_id, artist, daterange} = opt;
 
-  Object.assign(opt, options);
-
-  if ( opt.artist && opt.app_id ) {
+  if ( artist && app_id ) {
     let dateQuery = '';
 
-    if ( opt.daterange ) {
+    if ( daterange ) {
       dateQuery += '&date='
 
-      if ( typeof opt.daterange === 'string' ) {
-        dateQuery += opt.daterange;
-      } else if ( typeof opt.daterange === 'object' ) {
-        dateQuery += `${opt.daterange.from},${opt.daterange.to}`
+      if ( typeof daterange === 'string' ) {
+        dateQuery += daterange;
+      } else if ( typeof daterange === 'object' ) {
+        dateQuery += `${daterange.from},${daterange.to}`
       } else {
         dateQuery = '';
       }
     }
 
-    bitFetch(`${opt.artist}/events?app_id=${opt.app_id}${dateQuery}`).then(data => {
+    bitFetch(`${artist}/events?app_id=${app_id}${dateQuery}`).then(data => {
       callback(data)
     })
   }
