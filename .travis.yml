@@ -5,16 +5,14 @@ cache:
 notifications:
   email: false
 node_js:
-  - '7'
-  - '6'
-  - '4'
-before_script:
-  - npm prune
+  - '12'
+  - '11'
+  - '10'
 script:
-  - npm run test:single
-  - npm run build
+  - yarn test:single
+  - yarn build
 after_success:
-  - npm run semantic-release
+  - yarn semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
